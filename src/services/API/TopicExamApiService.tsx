@@ -1,7 +1,6 @@
 import BaseApiService from './BaseApiService';
 
 class TopicExamApiService extends BaseApiService {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(token?: any) {
     super(token);
   }

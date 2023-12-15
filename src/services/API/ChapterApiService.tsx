@@ -2,7 +2,6 @@ import handleResponseApi from 'src/services/handleResponseApi/handleResponseApi'
 import BaseApiService from './BaseApiService';
 
 class ChapterApiService extends BaseApiService {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(token?: any) {
     super(token);
   }
