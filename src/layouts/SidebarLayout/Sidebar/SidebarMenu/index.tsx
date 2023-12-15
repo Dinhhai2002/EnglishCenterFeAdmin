@@ -14,7 +14,6 @@ import { SidebarContext } from 'src/contexts/SidebarContext';
 
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import BrightnessLowTwoToneIcon from '@mui/icons-material/BrightnessLowTwoTone';
-import MmsTwoToneIcon from '@mui/icons-material/MmsTwoTone';
 import TableChartTwoToneIcon from '@mui/icons-material/TableChartTwoTone';
 
 const MenuWrapper = styled(Box)(
