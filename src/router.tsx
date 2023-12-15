@@ -85,6 +85,18 @@ const Status404 = Loader(
 //login
 const Login = Loader(lazy(() => import('src/content/pages/Login/Login')));
 
+//login
+const ForgotPassword = Loader(
+  lazy(() => import('src/content/pages/ForgotPassword/ForgotPassword'))
+);
+
+//login
+const OTP = Loader(lazy(() => import('src/content/pages/OTP/Otp')));
+
+const ResetPassword = Loader(
+  lazy(() => import('src/content/pages/ResetPassword/ResetPassword'))
+);
+
 const routes: RouteObject[] = [
   {
     path: '',
@@ -204,6 +216,18 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <Login />
+  },
+  {
+    path: '/forgot-password',
+    element: <ForgotPassword />
+  },
+  {
+    path: '/otp',
+    element: <OTP />
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPassword />
   }
 ];
 

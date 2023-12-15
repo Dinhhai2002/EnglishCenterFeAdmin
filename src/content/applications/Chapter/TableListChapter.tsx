@@ -46,12 +46,9 @@ function TableListChapter({
               listChapter.map((item: any) => {
                 return (
                   <TableRow hover key={item.id}>
-                    <TableCellComponent position={'center'} value={item.id} />
-                    <TableCellComponent position={'center'} value={item.name} />
-                    <TableCellComponent
-                      position={'center'}
-                      value={item.course_name}
-                    />
+                    <TableCellComponent value={item.id} />
+                    <TableCellComponent value={item.name} />
+                    <TableCellComponent value={item.course_name} />
 
                     <TableCell align="center">
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}

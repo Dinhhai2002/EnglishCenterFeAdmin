@@ -129,11 +129,11 @@ export const RecentOrdersTable = ({
         toast.success(`Chỉnh sửa thành công!`);
       })
       .catch((error: any) => {
-        toast.error(`${error.error.response.data.message}`);
-        setListClass(error.error.response.data.data);
-        setTimeout(() => {
-          handleOpenShowList();
-        }, 1500);
+        // toast.error(`${error.error.response.data.message}`);
+        // setListClass(error.error.response.data.data);
+        // setTimeout(() => {
+        //   handleOpenShowList();
+        // }, 1500);
       });
 
     handleCloseDelete(id);

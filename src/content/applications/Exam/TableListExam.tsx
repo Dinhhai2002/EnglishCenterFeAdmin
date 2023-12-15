@@ -70,9 +70,9 @@ function TableListExam({
                         <Label color="success">Đã có</Label>
                       )}
                     </TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                       {getStatusLabel(item.is_question, 'Đã có', 'Chưa có')}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell align="center">
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>

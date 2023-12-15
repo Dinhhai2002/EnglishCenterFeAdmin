@@ -14,7 +14,8 @@ import {
   SelectChangeEvent,
   TextField,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Zoom
 } from '@mui/material';
 
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
@@ -106,6 +107,8 @@ function UploadAudio({ setChangeData, changeData }: any) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         fullWidth
+        TransitionComponent={Zoom}
+        transitionDuration={600}
       >
         <DialogTitle sx={{ fontWeight: 700 }} id="responsive-dialog-title">
           Tải âm thanh nge cho đề thi

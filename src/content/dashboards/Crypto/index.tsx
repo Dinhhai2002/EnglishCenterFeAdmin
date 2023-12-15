@@ -6,12 +6,8 @@ import PageHeader from './PageHeader';
 
 import { useEffect, useState } from 'react';
 import adminApiService from 'src/services/API/Admin/AdminApiService';
-import AccountBalance from './AccountBalance';
-import AccountSecurity from './AccountSecurity';
 import AppWidgetSummary from './AppWidgetSummary';
 import RecentOrdersTableExam from './RecentOrdersTableExam';
-import Wallets from './Wallets';
-import WatchList from './WatchList';
 import RecentOrdersTablePayment from './RecentOrdersTablePayment';
 
 function DashboardCrypto() {
@@ -42,7 +38,7 @@ function DashboardCrypto() {
   return (
     <>
       <Helmet>
-        <title>Crypto Dashboard</title>
+        <title>English Center</title>
       </Helmet>
       <PageTitleWrapper>
         <PageHeader />
@@ -104,7 +100,7 @@ function DashboardCrypto() {
           <RecentOrdersTablePayment />
         </Grid>
       </Container>
-      <Container maxWidth="lg">
+      {/* <Container maxWidth="lg">
         <Grid
           container
           direction="row"
@@ -125,10 +121,10 @@ function DashboardCrypto() {
             <WatchList />
           </Grid>
           <Grid item xs={12}>
-            {/* <Chart type="line" data={chartData} /> */}
+            <Chart type="line" data={chartData} />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
       <Footer />
     </>
   );

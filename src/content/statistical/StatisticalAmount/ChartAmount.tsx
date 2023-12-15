@@ -1,18 +1,16 @@
-import { Box, Button, IconButton } from '@mui/material';
-import Chart from 'react-apexcharts';
 import SearchIcon from '@mui/icons-material/Search';
+import { Box, Button } from '@mui/material';
 import classNames from 'classnames/bind';
 import styles from './StatisticalExam.module.scss';
 
-import WeekPicker from '../chartWeek';
-import ChartMonth from '../ChartMonth';
-import ChartDate from '../ChartDate';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import ChartYear from '../ChartYear';
-import statisticalApiService from 'src/services/API/Admin/StatisticalApiService';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import utils from 'src/utils/Utils';
+import statisticalApiService from 'src/services/API/Admin/StatisticalApiService';
+import ChartDate from '../ChartDate';
+import ChartMonth from '../ChartMonth';
+import WeekPicker from '../chartWeek';
+import ChartYear from '../ChartYear';
 
 const cx = classNames.bind(styles);
 
@@ -84,8 +82,11 @@ function ChartAmount({ type }: any) {
   const weekNumber = dayjs(dateStart).isoWeek();
 
   const handleSubmitSearch = () => {
+    if (weekNumber <= 0 || formattedDate === '') {
+      return;
+    }
     statisticalApiService
-      .Amount(weekNumber, formattedDate, formattedDate, Number(type))
+      .Amount(Number(weekNumber), formattedDate, formattedDate, Number(type))
       .then((data: any) => {
         setListData(data.data);
       })

@@ -14,7 +14,8 @@ import {
   SelectChangeEvent,
   TextField,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Zoom
 } from '@mui/material';
 
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
@@ -97,6 +98,8 @@ function UploadQuestion({ setChangeData, changeData }) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         fullWidth
+        TransitionComponent={Zoom}
+        transitionDuration={600}
       >
         <DialogTitle sx={{ fontWeight: 700 }} id="responsive-dialog-title">
           Tải câu hỏi cho đề thi

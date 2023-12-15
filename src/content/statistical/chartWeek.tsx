@@ -79,11 +79,8 @@ function Day(
 export default function WeekPicker({ getDate }: any) {
   const [hoveredDay, setHoveredDay] = React.useState<Dayjs | null>(null);
   // const [value, setValue] = React.useState<Dayjs | null>(dayjs('2023-04-17'));
-  const [value, setValue] = React.useState<DateTime | null>(
-    DateTime.fromISO('2023-04-17T15:30', { zone: 'UTC' })
-  );
-  // const weekNumber = value.isoWeek();
-  // const formattedDate = dayjs().format('DD/MM/YYYY');
+  const [value, setValue] = React.useState<DateTime | null>(DateTime.now());
+  //  DateTime.fromISO('2023-11-15T15:30', { zone: 'UTC' })
 
   useEffect(() => {
     getDate(dayjs(value.toJSON()));

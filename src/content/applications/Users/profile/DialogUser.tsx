@@ -1,3 +1,5 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LoadingButton } from '@mui/lab';
 import {
   Alert,
   Box,
@@ -8,30 +10,25 @@ import {
   DialogTitle,
   TextField,
   useMediaQuery,
-  useTheme
+  useTheme,
+  Zoom
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import FormInput from 'src/components/FormReact/FormInput';
 import userApiService from 'src/services/API/UserApiService';
-function DialogUser({ user }: any) {
+import { EditSuccess } from 'src/utils/MessageToast';
+import { ValidateInput, validateSchema } from './ValidateFormUser';
+
+function DialogUser({ user, changeData, setChangeData }: any) {
   const [open, setOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, SetError] = useState('');
-  const [fullName, setFullName] = useState(user.full_name);
-  const [email, setEmail] = useState(user.email);
-  const [phone, setPhone] = useState(user.phone);
-  const [fullAddress, setFullAddress] = useState(user.full_address);
+  const [loading, setLoading] = useState(false);
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
-  // xử lí trường hợp đầu tiên user rỗng
-  useEffect(() => {
-    setFullName(user.full_name);
-    setEmail(user.email);
-    setPhone(user.phone);
-    setFullAddress(user.full_address);
-  }, [user]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,20 +38,36 @@ function DialogUser({ user }: any) {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const methods = useForm<ValidateInput>({
+    resolver: zodResolver(validateSchema)
+  });
+  const { handleSubmit } = methods;
+  console.log(123);
+
+  const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
+    setLoading(true);
+    if (
+      user.full_name === values.fullName &&
+      user.email === values.email &&
+      user.phone === values.phone &&
+      user.full_address === values.address
+    ) {
+      setLoading(false);
+      return;
+    }
 
     userApiService
-      .update(fullName, email, phone, fullAddress)
+      .update(values.fullName, values.email, values.phone, values.address)
       .then((data: any) => {
         setOpen(false);
-        toast.success(`Chỉnh sửa thành công`, {
-          position: toast.POSITION.TOP_RIGHT
-        });
+        toast.success(EditSuccess);
+        setLoading(false);
+        setChangeData(!changeData);
       })
       .catch((error: any) => {
         setIsError(true);
         SetError(error.message);
+        setLoading(false);
       });
   };
 
@@ -69,83 +82,77 @@ function DialogUser({ user }: any) {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         fullWidth
+        TransitionComponent={Zoom}
+        transitionDuration={600}
       >
         <DialogTitle sx={{ fontWeight: 700 }} id="responsive-dialog-title">
           Thông tin người dùng
         </DialogTitle>
         {isError && <Alert severity="error">{error}</Alert>}
-        <DialogContent>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Tên người dùng"
-              name="fullName"
-              autoComplete="username"
-              autoFocus
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
+        <FormProvider {...methods}>
+          <DialogContent>
+            <Box
+              component="form"
+              onSubmit={handleSubmit(onSubmitHandler)}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <FormInput
+                type="text"
+                name="fullName"
+                defaultValue={user.full_name}
+                required
+                fullWidth
+                label="Tên người dùng"
+                sx={{ mb: 2 }}
+              />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="description"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              sx={{ marginTop: 4 }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+              <FormInput
+                type="text"
+                name="email"
+                defaultValue={user.email}
+                required
+                fullWidth
+                label="email"
+                sx={{ mb: 2 }}
+              />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="phone"
-              label="Số điện thoại"
-              name="phone"
-              autoComplete="phone"
-              autoFocus
-              sx={{ marginTop: 4 }}
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
+              <FormInput
+                type="text"
+                name="phone"
+                defaultValue={user.phone}
+                required
+                fullWidth
+                label="Số điện thoại"
+                sx={{ mb: 2 }}
+              />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="address"
-              label="Địa chỉ"
-              name="address"
-              autoComplete="username"
-              autoFocus
-              sx={{ marginTop: 4 }}
-              value={fullAddress}
-              onChange={(e) => setFullAddress(e.target.value)}
-            />
+              <FormInput
+                type="text"
+                name="address"
+                defaultValue={user.full_address}
+                required
+                fullWidth
+                label="Địa chỉ"
+                sx={{ mb: 2 }}
+              />
 
-            <DialogActions>
-              <Button variant="outlined" autoFocus onClick={handleClose}>
-                Thoát
-              </Button>
-              <Button variant="outlined" type="submit" autoFocus>
-                Cập nhật
-              </Button>
-            </DialogActions>
-          </Box>
-        </DialogContent>
+              <DialogActions>
+                <Button variant="outlined" autoFocus onClick={handleClose}>
+                  Thoát
+                </Button>
+                <LoadingButton
+                  loading={loading}
+                  variant="outlined"
+                  type="submit"
+                  autoFocus
+                >
+                  Cập nhật
+                </LoadingButton>
+              </DialogActions>
+            </Box>
+          </DialogContent>
+        </FormProvider>
       </Dialog>
     </>
   );

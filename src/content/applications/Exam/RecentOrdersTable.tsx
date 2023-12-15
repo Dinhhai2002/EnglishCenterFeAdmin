@@ -1,33 +1,20 @@
-import SearchIcon from '@mui/icons-material/Search';
-import {
-  Box,
-  Card,
-  CardHeader,
-  Divider,
-  FormControl,
-  IconButton,
-  InputBase,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select
-} from '@mui/material';
+import { Box, Card, CardHeader, Divider } from '@mui/material';
 import { ChangeEvent, createContext, useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
+import DropDownComponent from 'src/components/DropDownComponent/DropDownComponent';
 import Empty from 'src/components/Empty/Empty';
 import PaginationComponent from 'src/components/Pagination/PaginationComponent';
+import Search from 'src/components/Search/Search';
 import examAdminApiService from 'src/services/API/Admin/ExamAdminApiService';
+import topicExamApiService from 'src/services/API/TopicExamApiService';
 import {
   getStatusLabel,
   labelTableExam,
   statusOptions
 } from 'src/utils/LabelTable';
-import TableListExam from './TableListExam';
 import { EditSuccess } from 'src/utils/MessageToast';
-import DropDownComponent from 'src/components/DropDownComponent/DropDownComponent';
-import Search from 'src/components/Search/Search';
-import topicExamApiService from 'src/services/API/TopicExamApiService';
+import TableListExam from './TableListExam';
 
 const ExamContext = createContext(null);
 
@@ -193,18 +180,12 @@ export const RecentOrdersTable = ({
           handleCloseEdit={handleCloseEdit}
           openDialogMapEdit={openDialogMapEdit}
         />
-        {listExam.length > 0 ? (
-          <PaginationComponent
-            handleChangePagination={handleChangePagination}
-            handleChangeLimit={handleChangeLimit}
-            totalRecord={totalRecord}
-            limit={limit}
-          />
-        ) : (
-          <Box p={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Empty />
-          </Box>
-        )}
+        <PaginationComponent
+          handleChangePagination={handleChangePagination}
+          handleChangeLimit={handleChangeLimit}
+          totalRecord={totalRecord}
+          limit={limit}
+        />
       </Card>
     </ExamContext.Provider>
   );

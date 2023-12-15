@@ -209,16 +209,16 @@ export const labelTableExam = [
     id: 6,
     name: 'Audio'
   },
+  // {
+  //   id: 7,
+  //   name: 'File câu hỏi'
+  // },
   {
     id: 7,
-    name: 'File câu hỏi'
-  },
-  {
-    id: 8,
     name: 'Trạng thái đề thi'
   },
   {
-    id: 9,
+    id: 8,
     name: 'Actions'
   }
 ];

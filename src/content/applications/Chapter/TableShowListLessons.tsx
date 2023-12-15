@@ -3,8 +3,10 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow, Typography
+  TableRow,
+  Typography
 } from '@mui/material';
+import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
 
 function TableShowListLessons({
   listLessons,
@@ -29,31 +31,11 @@ function TableShowListLessons({
             listLessons.map((item: any) => {
               return (
                 <TableRow hover key={item.id}>
-                  <TableCell align="center">
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {item.id}
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Typography
-                      variant="body1"
-                      fontWeight="bold"
-                      color="text.primary"
-                      gutterBottom
-                      noWrap
-                    >
-                      {item.name}
-                    </Typography>
-                  </TableCell>
+                  <TableCellComponent value={item.id} />
+                  <TableCellComponent value={item.name} />
 
                   <TableCell align="center">
-                    {getStatusLabel(item.status)}
+                    {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                   </TableCell>
                 </TableRow>
               );
