@@ -160,6 +160,8 @@ const SubMenuWrapper = styled(Box)(
 
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
+  console.log(123);
+  
 
   return (
     <>
