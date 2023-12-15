@@ -41,7 +41,7 @@ class CourseAdminApiService extends BaseApiService {
       if (response.data.status === 400) {
         messageError = response.data;
         const errorData = response.data.data;
-        // eslint-disable-next-line @typescript-eslint/no-throw-literal
+       
         throw {
           response
         };
@@ -49,7 +49,7 @@ class CourseAdminApiService extends BaseApiService {
 
       return response.data;
     } catch (error: any) {
-      // eslint-disable-next-line @typescript-eslint/no-throw-literal
+      
       throw { error };
     }
   }
