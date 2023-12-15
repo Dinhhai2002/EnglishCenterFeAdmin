@@ -25,7 +25,6 @@ class BaseApiService {
         const { url } = response.config;
         if (response.data.status === 400) {
           if (response.data.data !== null) {
-            // eslint-disable-next-line @typescript-eslint/no-throw-literal
             throw { response };
           }
           if (response.data.message === 'Dữ liệu không hợp lệ')

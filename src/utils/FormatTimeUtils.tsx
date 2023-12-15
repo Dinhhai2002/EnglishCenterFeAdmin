@@ -5,12 +5,10 @@ class FormatTimeUtils {
     let StringMinutes: string = '';
     let StringSeconds: string = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     minutes < 10
       ? (StringMinutes = `0${minutes}`)
       : (StringMinutes = `${minutes}`);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     seconds < 10
       ? (StringSeconds = `0${seconds}`)
       : (StringSeconds = `${seconds}`);

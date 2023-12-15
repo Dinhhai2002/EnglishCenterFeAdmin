@@ -39,7 +39,6 @@ class CategoryExamAdminApiService extends BaseApiService {
 
       handleResponseApi.handleResponse(response);
       if (response.data.status === 400) {
-        // eslint-disable-next-line @typescript-eslint/no-throw-literal
         throw {
           response
         };
@@ -47,7 +46,6 @@ class CategoryExamAdminApiService extends BaseApiService {
 
       return response.data;
     } catch (error: any) {
-      // eslint-disable-next-line @typescript-eslint/no-throw-literal
       throw { error };
     }
   }
