@@ -13,28 +13,30 @@ const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
   const theme = useTheme();
 
   return (
-    <Scrollbars
-      autoHide
-      renderThumbVertical={() => {
-        return (
-          <Box
-            sx={{
-              width: 5,
-              background: `${theme.colors.alpha.black[10]}`,
-              borderRadius: `${theme.general.borderRadiusLg}`,
-              transition: `${theme.transitions.create(['background'])}`,
+    <>
+      <Scrollbars
+        autoHide
+        renderThumbVertical={() => {
+          return (
+            <Box
+              sx={{
+                width: 5,
+                background: `${theme.colors.alpha.black[10]}`,
+                borderRadius: `${theme.general.borderRadiusLg}`,
+                transition: `${theme.transitions.create(['background'])}`,
 
-              '&:hover': {
-                background: `${theme.colors.alpha.black[30]}`
-              }
-            }}
-          />
-        );
-      }}
-      {...rest}
-    >
-      {children}
-    </Scrollbars>
+                '&:hover': {
+                  background: `${theme.colors.alpha.black[30]}`
+                }
+              }}
+            />
+          );
+        }}
+        {...rest}
+      >
+        {children}
+      </Scrollbars>
+    </>
   );
 };
 
