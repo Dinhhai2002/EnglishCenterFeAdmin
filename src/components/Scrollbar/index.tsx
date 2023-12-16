@@ -11,20 +11,21 @@ interface ScrollbarProps {
 
 const Scrollbar: FC<ScrollbarProps> = ({ children, ...rest }) => {
   const theme = useTheme(); // Ensure useTheme() is imported correctly
-console.log(123);
 
   const renderThumbVertical = () => (
-    <Box
-      sx={{
-        width: 5,
-        background: theme.colors.alpha.black[10],
-        borderRadius: theme.general.borderRadiusLg,
-        transition: theme.transitions.create(['background']),
-        '&:hover': {
-          background: theme.colors.alpha.black[30]
-        }
-      }}
-    />
+    <>
+      <Box
+        sx={{
+          width: 5,
+          background: theme.colors.alpha.black[10],
+          borderRadius: theme.general.borderRadiusLg,
+          transition: theme.transitions.create(['background']),
+          '&:hover': {
+            background: theme.colors.alpha.black[30]
+          }
+        }}
+      />
+    </>
   );
 
   return (
