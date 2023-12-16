@@ -13,7 +13,7 @@ const Scrollbar: FC<ScrollbarProps> = ({ children, ...rest }) => {
   const theme = useTheme(); // Ensure useTheme() is imported correctly
 
   const renderThumbVertical = () => (
-    <>
+    <div>
       <Box
         sx={{
           width: 5,
@@ -25,7 +25,7 @@ const Scrollbar: FC<ScrollbarProps> = ({ children, ...rest }) => {
           }
         }}
       />
-    </>
+    </div>
   );
 
   return (
