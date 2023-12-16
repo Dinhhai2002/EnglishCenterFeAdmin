@@ -58,11 +58,11 @@ export default function Login() {
     resolver: zodResolver(validateSchema)
   });
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful]);
+  // useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset();
+  //   }
+  // }, [isSubmitSuccessful]);
 
   const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
     setLoading(true);
