@@ -9,8 +9,9 @@ interface ScrollbarProps {
   children?: ReactNode;
 }
 
-const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
-  const theme = useTheme();
+const Scrollbar: FC<ScrollbarProps> = ({ children, ...rest }) => {
+  const theme = useTheme(); // Ensure useTheme() is imported correctly
+
   const renderThumbVertical = () => (
     <Box
       sx={{
@@ -24,6 +25,7 @@ const Scrollbar: FC<ScrollbarProps> = ({ className, children, ...rest }) => {
       }}
     />
   );
+
   return (
     <Scrollbars autoHide renderThumbVertical={renderThumbVertical} {...rest}>
       {children}
