@@ -11,6 +11,7 @@ interface ScrollbarProps {
 
 const Scrollbar: FC<ScrollbarProps> = ({ children, ...rest }) => {
   const theme = useTheme(); // Ensure useTheme() is imported correctly
+console.log(123);
 
   const renderThumbVertical = () => (
     <Box
