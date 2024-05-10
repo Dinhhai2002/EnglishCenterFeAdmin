@@ -2,13 +2,20 @@ import { IconButton, Tooltip, useTheme } from '@mui/material';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
-function IconActions({ handleClickOpen, id, type, title }) {
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+function IconActions({ handleClickOpen, id, type, title, isCheck = false }) {
   const theme = useTheme();
   const map = {
     0: {
-      icon: <DeleteTwoToneIcon fontSize="small" />,
-      background: theme.colors.error.lighter,
-      color: theme.palette.error.main
+      icon: isCheck ? (
+        <CheckCircleIcon fontSize="small" />
+      ) : (
+        <DeleteTwoToneIcon fontSize="small" />
+      ),
+      background: isCheck
+        ? theme.colors.info.lighter
+        : theme.colors.error.lighter,
+      color: isCheck ? theme.palette.info.main : theme.palette.error.main
     },
     1: {
       icon: <ChangeCircleIcon fontSize="small" />,

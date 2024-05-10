@@ -37,6 +37,7 @@ import TableListCourse from './TableListCourse';
 import TableShowListClass from './TableShowListClass';
 import DropDownComponent from 'src/components/DropDownComponent/DropDownComponent';
 import Search from 'src/components/Search/Search';
+import { PAGE_DEFAULT } from 'src/utils/Constant';
 
 const CourseContext = createContext(null);
 
@@ -113,12 +114,8 @@ export const RecentOrdersTable = ({
   }, [page]);
 
   useEffect(() => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [limit]);
-
-  useEffect(() => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [statusValue]);
+    onClickPagination(valueSearch, PAGE_DEFAULT, limit, statusValue);
+  }, [limit, statusValue]);
 
   //
   const handleChangeStatusCourse = (id: number) => {

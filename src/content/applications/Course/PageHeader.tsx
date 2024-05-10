@@ -59,26 +59,20 @@ function PageHeader({ setChangeData, changeData }: any) {
     handleSubmit
   } = methods;
 
-  const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
+  const onSubmitHandler: SubmitHandler<ValidateInput> = async (values: any) => {
     setLoading(true);
 
-    courseAdminApiService
-      .create(
-        values.name,
-        values.description,
-        Number(values.price),
-        Number(isFree)
-      )
-      .then((data: any) => {
-        setOpen(false);
-        toast.success(CreateSuccess);
-        setChangeData(!changeData);
-        setLoading(false);
-        reset();
-      })
-      .catch((error: any) => {
-        setLoading(false);
-      });
+    await courseAdminApiService.create(
+      values.name,
+      values.description,
+      Number(values.price),
+      Number(isFree)
+    );
+    setOpen(false);
+    toast.success(CreateSuccess);
+    setChangeData(!changeData);
+    setLoading(false);
+    reset();
   };
 
   return (

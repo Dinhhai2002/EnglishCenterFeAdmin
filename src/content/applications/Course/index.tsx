@@ -20,7 +20,6 @@ function ApplicationsCourse() {
         <Grid container justifyContent="space-between" alignItems="center">
           <PageHeader setChangeData={setChangeData} changeData={changeData} />
           <UploadBanner setChangeData={setChangeData} changeData={changeData} />
-          {/* <AddChapter /> */}
         </Grid>
       </PageTitleWrapper>
       <PageTitleWrapper></PageTitleWrapper>

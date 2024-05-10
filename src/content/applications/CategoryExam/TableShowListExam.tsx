@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 
 function TableShowListExam({ listExam, labelTableExam, getStatusLabel }: any) {
- 
   return (
     <>
       <TableContainer>
@@ -53,7 +52,7 @@ function TableShowListExam({ listExam, labelTableExam, getStatusLabel }: any) {
                   </TableCell>
 
                   <TableCell align="center">
-                    {getStatusLabel(item.status)}
+                    {(getStatusLabel(item.status), 'Hoạt động', 'Tạm khóa')}
                   </TableCell>
                 </TableRow>
               );

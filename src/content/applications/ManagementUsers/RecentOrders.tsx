@@ -1,9 +1,9 @@
 import { Card } from '@mui/material';
-import { CryptoOrder } from 'src/models/crypto_order';
-import RecentOrdersTable from './RecentOrdersTable';
-import { subDays } from 'date-fns';
 import { useEffect, useState } from 'react';
 import userAdminApiService from 'src/services/API/Admin/UserAdminApiService';
+import { LIMIT_DEFAULT, PAGE_DEFAULT } from 'src/utils/Constant';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
+import RecentOrdersTable from './RecentOrdersTable';
 
 function RecentOrders() {
   const [listUser, setListUser] = useState<any>([]);
@@ -11,7 +11,7 @@ function RecentOrders() {
 
   useEffect(() => {
     userAdminApiService
-      .getAll('', -1,-1, 1, 10)
+      .getAll('', StatusEnum.ALL, -1, PAGE_DEFAULT, LIMIT_DEFAULT)
       .then((data: any) => {
         setListUser(data.data.list);
         setTotalRecord(data.data.total_record);
@@ -25,10 +25,8 @@ function RecentOrders() {
     limit: number,
     statusValue: number
   ) => {
-    // console.log(page, statusValue);
-
     userAdminApiService
-      .getAll(valueSearch, statusValue,-1, page, limit)
+      .getAll(valueSearch, statusValue, -1, page, limit)
       .then((data: any) => {
         setListUser(data.data.list);
         setTotalRecord(data.data.total_record);

@@ -4,10 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  useMediaQuery,
-  useTheme,
-  Zoom
+  DialogTitle, Zoom
 } from '@mui/material';
 
 function DialogDelete({

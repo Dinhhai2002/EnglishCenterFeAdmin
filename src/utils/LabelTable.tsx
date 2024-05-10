@@ -76,6 +76,32 @@ export const getStatusLabel = (
   return <Label color={color}>{text}</Label>;
 };
 
+export const getStatusLabelBlog = (
+  userStatus: UserStatus,
+  labelSuccess,
+  labelError,
+  labelPending
+): JSX.Element => {
+  const map = {
+    1: {
+      text: labelPending,
+      color: 'info'
+    },
+    2: {
+      text: labelSuccess,
+      color: 'success'
+    },
+    3: {
+      text: labelError,
+      color: 'error'
+    }
+  };
+
+  const { text, color }: any = map[userStatus];
+
+  return <Label color={color}>{text}</Label>;
+};
+
 export const getStatusMoneyCourse = (userStatus: UserStatus): JSX.Element => {
   const map = {
     0: {
@@ -108,6 +134,25 @@ export const statusOptions = [
   }
 ];
 
+export const statusOptionsBlog = [
+  {
+    id: -1,
+    name: 'Tất cả'
+  },
+  {
+    id: 1,
+    name: 'Chờ duyệt'
+  },
+  {
+    id: 2,
+    name: 'Đã duyệt'
+  },
+  {
+    id: 2,
+    name: 'Tạm khóa'
+  }
+];
+
 export const LessonsOptions = [
   {
     id: 1,
@@ -122,15 +167,15 @@ export const LessonsOptions = [
 export const labelTableCategoryExam = [
   {
     id: 1,
-    name: 'Mã Danh mục đề thi'
+    name: 'Mã Danh mục'
   },
   {
     id: 2,
-    name: 'Tên danh mục đề thi'
+    name: 'Tên danh mục '
   },
   {
     id: 3,
-    name: 'Trạng thái lớp học'
+    name: 'Trạng thái'
   },
   {
     id: 4,
@@ -150,6 +195,21 @@ export const labelTableExamInCategoryExam = [
   {
     id: 3,
     name: 'Trạng thái đề thi'
+  }
+];
+
+export const labelTableCourseInCategoryCourse = [
+  {
+    id: 1,
+    name: 'Mã khóa học'
+  },
+  {
+    id: 2,
+    name: 'Tên khóa học'
+  },
+  {
+    id: 3,
+    name: 'Trạng thái khóa học'
   }
 ];
 
@@ -375,5 +435,32 @@ export const labelTablePaymentHistory = [
   {
     id: 5,
     name: 'Ngày thanh toán'
+  }
+];
+
+export const labelTableBlog = [
+  {
+    id: 1,
+    name: 'Mã Blog'
+  },
+  {
+    id: 2,
+    name: 'Tên Blog'
+  },
+  {
+    id: 3,
+    name: 'Tên tác giả'
+  },
+  {
+    id: 4,
+    name: 'Điểm bài viết'
+  },
+  {
+    id: 5,
+    name: 'Trạng thái blog'
+  },
+  {
+    id: 6,
+    name: 'Actions'
   }
 ];

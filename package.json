@@ -9,6 +9,9 @@
   },
   "private": false,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.3.0",
+    "@ckeditor/ckeditor5-list": "^41.3.1",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
     "@hookform/resolvers": "^3.3.2",

@@ -1,6 +1,8 @@
 import { Card, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import chapterApiService from 'src/services/API/ChapterApiService';
+import { LIMIT_DEFAULT, PAGE_DEFAULT } from 'src/utils/Constant';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import { RecentOrdersTable } from './RecentOrdersTable';
 
 function RecentOrders({ changeData }) {
@@ -8,26 +10,31 @@ function RecentOrders({ changeData }) {
   const [totalRecord, setTotalRecord] = useState<any>(0);
   const [dataLoaded, setDataLoaded] = useState(false); // Biến cờ
 
-  useEffect(() => {
+  const fetchData = (
+    course: number,
+    valueSearch: string,
+    page: number,
+    limit: number,
+    statusValue: number
+  ) => {
     chapterApiService
-      .getAll(-1, '', -1, 1, 0, 10)
-      .then((data: any) => {
+      .getAll(course, valueSearch, statusValue, 1, page, limit)
+      .then((data) => {
         setListChapter(data.data.list);
         setTotalRecord(data.data.total_record);
         setDataLoaded(true);
       })
-      .catch((error: any) => {});
+      .catch((error) => {
+        // Handle error if needed
+      });
+  };
+
+  useEffect(() => {
+    fetchData(-1, '', PAGE_DEFAULT, LIMIT_DEFAULT, StatusEnum.ALL);
   }, []);
 
   useEffect(() => {
-    chapterApiService
-      .getAll(-1, '', -1, 1, 0, 10)
-      .then((data: any) => {
-        setListChapter(data.data.list);
-        setTotalRecord(data.data.total_record);
-        setDataLoaded(true);
-      })
-      .catch((error: any) => {});
+    fetchData(-1, '', PAGE_DEFAULT, LIMIT_DEFAULT, StatusEnum.ALL);
   }, [changeData]);
 
   const onClickPagination = (
@@ -37,15 +44,7 @@ function RecentOrders({ changeData }) {
     limit: number,
     statusValue: number
   ) => {
-    // console.log(page, statusValue);
-
-    chapterApiService
-      .getAll(course, valueSearch, statusValue, 1, page, limit)
-      .then((data: any) => {
-        setListChapter(data.data.list);
-        setTotalRecord(data.data.total_record);
-      })
-      .catch((error: any) => {});
+    fetchData(course, valueSearch, page, limit, statusValue);
   };
 
   if (!dataLoaded) {

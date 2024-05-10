@@ -1,6 +1,6 @@
 import handleResponseApi from '../handleResponseApi/handleResponseApi';
 import BaseApiService from './BaseApiService';
-
+const prefix = 'authentication';
 class AuthenticationApiService extends BaseApiService {
   public async Login(user_name: any, password: any): Promise<any> {
     try {
@@ -126,7 +126,7 @@ class AuthenticationApiService extends BaseApiService {
 
     try {
       const response: any = await this.api.get(
-        `/authentication/${id}/get-district-by-city`
+        `/${prefix}/${id}/get-district-by-city`
       );
 
       messageError = handleResponseApi.handleResponse(response);
@@ -142,7 +142,7 @@ class AuthenticationApiService extends BaseApiService {
 
     try {
       const response: any = await this.api.get(
-        `/authentication/${id}/get-ward-by-district`
+        `/${prefix}/${id}/get-ward-by-district`
       );
 
       messageError = handleResponseApi.handleResponse(response);
@@ -155,7 +155,7 @@ class AuthenticationApiService extends BaseApiService {
 
   public async OtpForgot(user_name: any, email: any): Promise<any> {
     try {
-      const response: any = await this.api.post(`/authentication/otp`, {
+      const response: any = await this.api.post(`/${prefix}/otp`, {
         user_name,
         email
       });
@@ -175,7 +175,7 @@ class AuthenticationApiService extends BaseApiService {
     type: number
   ): Promise<any> {
     try {
-      const response: any = await this.api.post(`/authentication/confirm-otp`, {
+      const response: any = await this.api.post(`/${prefix}/confirm-otp`, {
         user_name,
         email,
         otp,
@@ -187,6 +187,56 @@ class AuthenticationApiService extends BaseApiService {
       return response.data;
     } catch (error: any) {
       throw new Error(error.message);
+    }
+  }
+
+  public async getAllPost(
+    categoryBlogId?: number,
+    keySearch?: string,
+    status?: number,
+    page?: number,
+    limit?: number
+  ): Promise<any> {
+    try {
+      const response = await this.api.get(`/${prefix}/post`, {
+        params: {
+          category_blog_id: categoryBlogId,
+          key_search: keySearch,
+          status: status,
+          page: page,
+          limit: limit
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findOnePost(id: number, isAuthorize?: number): Promise<any> {
+    try {
+      const response = await this.api.get(`/${prefix}/post/${id}`, {
+        params: {
+          isAuthorize: isAuthorize
+        }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+
+  public async getAllCategoryBlog(status?: number): Promise<any> {
+    try {
+      const response = await this.api.get(`/${prefix}/category-blog`, {
+        params: {
+          status: status
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
     }
   }
 }

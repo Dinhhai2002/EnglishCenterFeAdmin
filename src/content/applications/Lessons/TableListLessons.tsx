@@ -9,8 +9,11 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
+import ActionComponent from 'src/components/IconActions/ActionComponent';
 import IconActions from 'src/components/IconActions/IconActions';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
+import { IconActionEnum } from 'src/utils/enum/IconActionEnum';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import DialogDelete from './DialogDelete';
 import DialogEdit from './DialogEdit';
 import DialogVideo from './DialogVideo';
@@ -74,29 +77,12 @@ function TableListLessons({
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>
 
-                    <TableCell align="center">
-                      <IconActions
-                        title="Chỉnh sửa"
-                        handleClickOpen={handleClickOpenEdit}
-                        id={item.id}
-                        type={2}
-                      />
-                      {item.status === 1 ? (
-                        <IconActions
-                          title="khóa bài học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={0}
-                        />
-                      ) : (
-                        <IconActions
-                          title="Mở bài học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={1}
-                        />
-                      )}
-                    </TableCell>
+                    <ActionComponent
+                      handleClickOpenEdit={handleClickOpenEdit}
+                      id={item.id}
+                      handleClickOpenDelete={handleClickOpenDelete}
+                      status={item.status}
+                    />
 
                     <TableCell align="center">
                       <Button
@@ -118,17 +104,20 @@ function TableListLessons({
                       fullScreen={fullScreen}
                     />
 
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
-
-                    <DialogVideo
-                      openDialogMapVideo={openDialogMapVideo}
-                      id={item.id}
-                      handleCloseVideo={handleCloseVideo}
-                    />
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
+                    {openDialogMapVideo[item.id] && (
+                      <DialogVideo
+                        openDialogMapVideo={openDialogMapVideo}
+                        id={item.id}
+                        handleCloseVideo={handleCloseVideo}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

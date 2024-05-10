@@ -1,20 +1,17 @@
-import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
-import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
-import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import {
-  IconButton,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Tooltip,
-  Typography,
   useTheme
 } from '@mui/material';
+import ActionComponent from 'src/components/IconActions/ActionComponent';
 import IconActions from 'src/components/IconActions/IconActions';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
+import { IconActionEnum } from 'src/utils/enum/IconActionEnum';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import DialogDelete from './DialogDelete';
 import DialogEdit from './DialogEdit';
 
@@ -54,31 +51,15 @@ function TableListCategoryExam({
                     <TableCellComponent position={'center'} value={item.name} />
 
                     <TableCell align="center">
-                    {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
+                      {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>
-                    <TableCell align="center">
-                      <IconActions
-                        title="Chỉnh sửa"
-                        handleClickOpen={handleClickOpenEdit}
-                        id={item.id}
-                        type={2}
-                      />
-                      {item.status === 1 ? (
-                        <IconActions
-                          title="khóa danh mục đề thi"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={0}
-                        />
-                      ) : (
-                        <IconActions
-                          title="Mở danh mục đề thi"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={1}
-                        />
-                      )}
-                    </TableCell>
+                    <ActionComponent
+                      handleClickOpenEdit={handleClickOpenEdit}
+                      id={item.id}
+                      handleClickOpenDelete={handleClickOpenDelete}
+                      status={item.status}
+                    />
+
                     {/* DialogDelete */}
 
                     <DialogDelete
@@ -92,11 +73,13 @@ function TableListCategoryExam({
 
                     {/* DialogEdit */}
 
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

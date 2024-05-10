@@ -8,8 +8,11 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
+import ActionComponent from 'src/components/IconActions/ActionComponent';
 import IconActions from 'src/components/IconActions/IconActions';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
+import { IconActionEnum } from 'src/utils/enum/IconActionEnum';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import DialogDelete from './DialogDelete';
 import DialogEdit from './DialogEdit';
 
@@ -53,29 +56,12 @@ function TableListChapter({
                     <TableCell align="center">
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>
-                    <TableCell align="center">
-                      <IconActions
-                        title="Chỉnh sửa"
-                        handleClickOpen={handleClickOpenEdit}
-                        id={item.id}
-                        type={2}
-                      />
-                      {item.status === 1 ? (
-                        <IconActions
-                          title="khóa chương học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={0}
-                        />
-                      ) : (
-                        <IconActions
-                          title="Mở chương học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={1}
-                        />
-                      )}
-                    </TableCell>
+                    <ActionComponent
+                      handleClickOpenEdit={handleClickOpenEdit}
+                      id={item.id}
+                      handleClickOpenDelete={handleClickOpenDelete}
+                      status={item.status}
+                    />
                     {/* Dialog */}
                     <DialogDelete
                       openDialogMapDelete={openDialogMapDelete}
@@ -85,11 +71,13 @@ function TableListChapter({
                       fullScreen={fullScreen}
                     />
 
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

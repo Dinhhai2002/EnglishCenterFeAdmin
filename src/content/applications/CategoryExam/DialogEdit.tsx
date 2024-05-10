@@ -49,7 +49,7 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
     reset
   } = methods;
 
-  const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
+  const onSubmitHandler: SubmitHandler<ValidateInput> = async (values: any) => {
     setLoading(true);
     if (
       categoryExam.name === values.name &&
@@ -58,18 +58,16 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
       setLoading(false);
       return;
     }
-    categoryExamAdminApiService
-      .update(id, values.name, values.description)
-      .then((data: any) => {
-        setCategoryExam(data.data);
-        toast.success(EditSuccess);
-        handleCloseEdit(id);
-        setLoading(false);
-        categoryExamContext.onChangeValue();
-      })
-      .catch((error: any) => {
-        setLoading(false);
-      });
+    const data = await categoryExamAdminApiService.update(
+      id,
+      values.name,
+      values.description
+    );
+    setCategoryExam(data.data);
+    toast.success(EditSuccess);
+    handleCloseEdit(id);
+    setLoading(false);
+    categoryExamContext.onChangeValue();
   };
 
   return (

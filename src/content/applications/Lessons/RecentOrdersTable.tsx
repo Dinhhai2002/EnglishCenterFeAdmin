@@ -16,11 +16,14 @@ import Search from 'src/components/Search/Search';
 import chapterApiService from 'src/services/API/ChapterApiService';
 import courseApiService from 'src/services/API/CourseApiService';
 import lessonsApiService from 'src/services/API/LessonsApiService';
+import { LIMIT_DEFAULT, PAGE_DEFAULT } from 'src/utils/Constant';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import {
   getStatusLabel,
   labelTableLessons,
   statusOptions
 } from 'src/utils/LabelTable';
+import { EditSuccess } from 'src/utils/MessageToast';
 import TableListLessons from './TableListLessons';
 
 const LessonsContext = createContext(null);
@@ -45,6 +48,17 @@ export const RecentOrdersTable = ({
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+  const fetchChapter = async (course: number) => {
+    const data = await chapterApiService.getAll(
+      course,
+      '',
+      StatusEnum.ALL,
+      0,
+      PAGE_DEFAULT,
+      LIMIT_DEFAULT
+    );
+    setListChapter(data.data.list);
+  };
   useEffect(() => {
     courseApiService
       .getAll()
@@ -52,13 +66,7 @@ export const RecentOrdersTable = ({
         setListCourse(data.data);
       })
       .catch((error: any) => {});
-
-    chapterApiService
-      .getAll(-1, '', -1, 0, 0, 10)
-      .then((data) => {
-        setListChapter(data.data.list);
-      })
-      .catch((error: any) => {});
+    fetchChapter(-1);
   }, []);
 
   // xử lí đóng mở model delete và edit theo id
@@ -132,36 +140,26 @@ export const RecentOrdersTable = ({
   }, [page]);
 
   useEffect(() => {
-    onClickPagination(course, chapter, valueSearch, 1, limit, statusValue);
-  }, [limit]);
+    onClickPagination(
+      course,
+      chapter,
+      valueSearch,
+      PAGE_DEFAULT,
+      limit,
+      statusValue
+    );
+  }, [limit, statusValue, chapter]);
 
   useEffect(() => {
     onClickPagination(course, chapter, valueSearch, 1, limit, statusValue);
-  }, [statusValue]);
-
-  useEffect(() => {
-    onClickPagination(course, chapter, valueSearch, 1, limit, statusValue);
-    chapterApiService
-      .getAll(course, '', -1, 0, 0, 10)
-      .then((data) => {
-        setListChapter(data.data.list);
-      })
-      .catch((error: any) => {});
+    fetchChapter(course);
   }, [course]);
 
-  useEffect(() => {
-    onClickPagination(course, chapter, valueSearch, 1, limit, statusValue);
-  }, [chapter]);
-
   //
-  const handleChangeStatusLessons = (id: number) => {
-    lessonsApiService
-      .changeStatus(id)
-      .then((data: any) => {
-        onClickPagination(course, -1, valueSearch, page, limit, statusValue);
-        toast.success(`Chỉnh sửa thành công!`);
-      })
-      .catch((error: any) => {});
+  const handleChangeStatusLessons = async (id: number) => {
+    await lessonsApiService.changeStatus(id);
+    onClickPagination(course, -1, valueSearch, page, limit, statusValue);
+    toast.success(EditSuccess);
 
     handleCloseDelete(id);
   };

@@ -43,6 +43,7 @@ import TableListCategoryExam from './TableListCategoryExam';
 import TableShowListExam from './TableShowListExam';
 import DropDownComponent from 'src/components/DropDownComponent/DropDownComponent';
 import Search from 'src/components/Search/Search';
+import { PAGE_DEFAULT } from 'src/utils/Constant';
 
 const CategoryExamContext = createContext(null);
 
@@ -125,12 +126,8 @@ export const RecentOrdersTable = ({
   }, [page]);
 
   useEffect(() => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [limit]);
-
-  useEffect(() => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [statusValue]);
+    onClickPagination(valueSearch, PAGE_DEFAULT, limit, statusValue);
+  }, [limit, statusValue]);
 
   const handleChangeStatusCategoryExam = (id: number) => {
     categoryExamAdminApiService
@@ -152,7 +149,7 @@ export const RecentOrdersTable = ({
   };
 
   const handleSubmitSearch = () => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
+    onClickPagination(valueSearch, PAGE_DEFAULT, limit, statusValue);
   };
 
   /**

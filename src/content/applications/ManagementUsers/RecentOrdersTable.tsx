@@ -30,11 +30,12 @@ import TableListUser from './TableListUser';
 import { EditSuccess } from 'src/utils/MessageToast';
 import DropDownComponent from 'src/components/DropDownComponent/DropDownComponent';
 import Search from 'src/components/Search/Search';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 
 const RecentOrdersTable = ({ listUser, totalRecord, onClickPagination }) => {
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(10);
-  const [statusValue, setStatusValue] = useState<number>(-1);
+  const [statusValue, setStatusValue] = useState<number>(StatusEnum.ALL);
   const [valueSearch, setValueSearch] = useState('');
   const [openDialogMap, setOpenDialogMap] = useState({});
 
@@ -67,7 +68,6 @@ const RecentOrdersTable = ({ listUser, totalRecord, onClickPagination }) => {
 
   const handleChangeLimit = (event: ChangeEvent<HTMLInputElement>) => {
     setLimit(Number(event.target.value));
-    console.log(limit);
   };
 
   useEffect(() => {
@@ -76,22 +76,12 @@ const RecentOrdersTable = ({ listUser, totalRecord, onClickPagination }) => {
 
   useEffect(() => {
     onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [limit]);
+  }, [limit, statusValue]);
 
-  useEffect(() => {
-    onClickPagination(valueSearch, 1, limit, statusValue);
-  }, [statusValue]);
-
-  //
-  const handleChangeStatusUser = (id: number) => {
-    userAdminApiService
-      .changeStatus(id)
-      .then((data: any) => {
-        onClickPagination(valueSearch, page, limit, statusValue);
-        toast.success(EditSuccess);
-      })
-      .catch((error: any) => {});
-
+  const handleChangeStatusUser = async (id: number) => {
+    await userAdminApiService.changeStatus(id);
+    onClickPagination(valueSearch, page, limit, statusValue);
+    toast.success(EditSuccess);
     handleClose(id);
   };
 

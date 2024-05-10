@@ -11,7 +11,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import FormInput from 'src/components/FormReact/FormInput';
@@ -56,26 +56,20 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
       setLoading(false);
       return;
     }
-    examAdminApiService
-      .update(
-        id,
-        values.name,
-        values.description,
-        exam.category_exam_id,
-        exam.topic_id,
-        exam.total_question,
-        exam.time_minutes
-      )
-      .then((data: any) => {
-        setExam(data.data);
-        toast.success(EditSuccess);
-        handleCloseEdit(id);
-        setLoading(false);
-        examContext.onChangeValue();
-      })
-      .catch((error: any) => {
-        setLoading(false);
-      });
+    const data: any = examAdminApiService.update(
+      id,
+      values.name,
+      values.description,
+      exam.category_exam_id,
+      exam.topic_id,
+      exam.total_question,
+      exam.time_minutes
+    );
+    setExam(data.data);
+    toast.success(EditSuccess);
+    handleCloseEdit(id);
+    setLoading(false);
+    examContext.onChangeValue();
   };
 
   return (
@@ -118,7 +112,7 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
               name="description"
               defaultValue={exam.description}
               required
-              multiline 
+              multiline
               fullWidth
               label="Mô tả"
               sx={{ mb: 2 }}

@@ -1,24 +1,12 @@
-import PropTypes from 'prop-types';
-import {
-  Box,
-  Typography,
-  Card,
-  Tooltip,
-  Avatar,
-  CardMedia,
-  Button,
-  IconButton
-} from '@mui/material';
+import { Avatar, Box, Card, CardMedia, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
-import ArrowBackTwoToneIcon from '@mui/icons-material/ArrowBackTwoTone';
-import ArrowForwardTwoToneIcon from '@mui/icons-material/ArrowForwardTwoTone';
-import UploadTwoToneIcon from '@mui/icons-material/UploadTwoTone';
-import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
-import utils from 'src/utils/Utils';
-import DialogUser from './DialogUser';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import userApiService from 'src/services/API/UserApiService';
+import { User } from 'src/types/User';
+import utils from 'src/utils/Utils';
+import DialogUser from './DialogUser';
 import DialogAvatar from './UploadAvatar';
 
 const Input = styled('input')({
@@ -82,6 +70,10 @@ const CardCoverAction = styled(Box)(
     bottom: ${theme.spacing(2)};
 `
 );
+
+interface ProfileCoverProps {
+  user: User;
+}
 
 const ProfileCover = () => {
   const [user, setUser] = useState<any>({});

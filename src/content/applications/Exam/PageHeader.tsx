@@ -77,34 +77,22 @@ function PageHeader({ setChangeData, changeData }) {
     reset
   } = methods;
 
-  const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
+  const onSubmitHandler: SubmitHandler<ValidateInput> = async (values: any) => {
     setLoading(true);
 
-    examAdminApiService
-      .create(
-        values.name,
-        values.description,
-        Number(categoryExam),
-        Number(values.topic),
-        Number(values.time),
-        Number(values.question)
-      )
-      .then((data: any) => {
-        /**
-         * Đóng model
-         * toast message
-         * truyền sự kiện để render lại danh sách mới
-         * reset form
-         */
-        setOpen(false);
-        toast.success(CreateSuccess);
-        setChangeData(!changeData);
-        setLoading(false);
-        reset();
-      })
-      .catch((error: any) => {
-        setLoading(false);
-      });
+    await examAdminApiService.create(
+      values.name,
+      values.description,
+      Number(categoryExam),
+      Number(values.topic),
+      Number(values.time),
+      Number(values.question)
+    );
+    setOpen(false);
+    toast.success(CreateSuccess);
+    setChangeData(!changeData);
+    setLoading(false);
+    reset();
   };
 
   return (

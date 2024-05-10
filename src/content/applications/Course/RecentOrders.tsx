@@ -1,33 +1,35 @@
 import { Card, Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import courseAdminApiService from 'src/services/API/Admin/CourseAdminApiService';
+import { LIMIT_DEFAULT, PAGE_DEFAULT } from 'src/utils/Constant';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import { RecentOrdersTable } from './RecentOrdersTable';
 
 function RecentOrders({ changeData }) {
   const [listCourse, setListCourse] = useState([]);
   const [totalRecord, setTotalRecord] = useState<any>(0);
   const [dataLoaded, setDataLoaded] = useState(false); // Biến cờ
-
-  useEffect(() => {
+  const fetchCourse = (
+    valueSearch: string,
+    statusValue: number,
+    page: number,
+    limit: number
+  ) => {
     courseAdminApiService
-      .getAll('', -1, 1, 10)
+      .getAll(valueSearch, statusValue, page, limit)
       .then((data: any) => {
         setListCourse(data.data.list);
         setTotalRecord(data.data.total_record);
         setDataLoaded(true);
       })
       .catch((error: any) => {});
+  };
+  useEffect(() => {
+    fetchCourse('', StatusEnum.ALL, PAGE_DEFAULT, LIMIT_DEFAULT);
   }, []);
 
   useEffect(() => {
-    courseAdminApiService
-      .getAll('', -1, 1, 10)
-      .then((data: any) => {
-        setListCourse(data.data.list);
-        setTotalRecord(data.data.total_record);
-        setDataLoaded(true);
-      })
-      .catch((error: any) => {});
+    fetchCourse('', StatusEnum.ALL, PAGE_DEFAULT, LIMIT_DEFAULT);
   }, [changeData]);
 
   const onClickPagination = (
@@ -36,14 +38,7 @@ function RecentOrders({ changeData }) {
     limit: number,
     statusValue: number
   ) => {
-
-    courseAdminApiService
-      .getAll(valueSearch, statusValue, page, limit)
-      .then((data: any) => {
-        setListCourse(data.data.list);
-        setTotalRecord(data.data.total_record);
-      })
-      .catch((error: any) => {});
+    fetchCourse(valueSearch, statusValue, page, limit);
   };
 
   if (!dataLoaded) {

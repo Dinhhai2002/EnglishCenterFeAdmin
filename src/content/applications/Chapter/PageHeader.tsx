@@ -65,7 +65,6 @@ function PageHeader({ setChangeData, changeData }: any) {
 
   const onSubmitHandler: SubmitHandler<ValidateInput> = (values: any) => {
     setLoading(true);
-    console.log(values.name, Number(values.course));
 
     chapterApiService
       .create(values.name, Number(values.course))

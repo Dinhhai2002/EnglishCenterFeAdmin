@@ -4,10 +4,13 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow, useTheme
+  TableRow,
+  useTheme
 } from '@mui/material';
 import IconActions from 'src/components/IconActions/IconActions';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
+import { User } from 'src/types/User';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import DialogDelete from './DialogDelete';
 
 function TableListUser({
@@ -26,7 +29,6 @@ function TableListUser({
         <Table>
           <TableHead>
             <TableRow>
-              {/* map label bảng */}
               {labelTable.map((item: any) => (
                 <TableCell align="center" key={item.id}>
                   {item.name}
@@ -35,7 +37,7 @@ function TableListUser({
             </TableRow>
           </TableHead>
           <TableBody>
-            {listUser.map((user: any) => {
+            {listUser.map((user: User) => {
               return (
                 <TableRow hover key={user.id}>
                   <TableCellComponent position={'center'} value={user.id} />
@@ -53,10 +55,10 @@ function TableListUser({
                   <TableCellComponent position={'center'} value={user.phone} />
 
                   <TableCell align="center">
-                  {getStatusLabel(user.is_active, 'Hoạt động', 'Tạm khóa')}
+                    {getStatusLabel(user.is_active, 'Hoạt động', 'Tạm khóa')}
                   </TableCell>
                   <TableCell align="center">
-                    {user.is_active === 1 ? (
+                    {user.is_active === StatusEnum.ON ? (
                       <IconActions
                         title="khóa tài khoản"
                         handleClickOpen={handleClickOpen}
@@ -73,7 +75,6 @@ function TableListUser({
                     )}
                   </TableCell>
 
-                  {/* Dialog */}
                   <DialogDelete
                     openDialogMap={openDialogMap}
                     id={user.id}

@@ -8,6 +8,7 @@ import PaginationComponent from 'src/components/Pagination/PaginationComponent';
 import Search from 'src/components/Search/Search';
 import examAdminApiService from 'src/services/API/Admin/ExamAdminApiService';
 import topicExamApiService from 'src/services/API/TopicExamApiService';
+import { PAGE_DEFAULT } from 'src/utils/Constant';
 import {
   getStatusLabel,
   labelTableExam,
@@ -70,8 +71,6 @@ export const RecentOrdersTable = ({
     }));
   };
 
-  console.log(topic);
-
   const handleStatusChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setStatusValue(Number(e.target.value));
   };
@@ -97,31 +96,19 @@ export const RecentOrdersTable = ({
 
   useEffect(() => {
     onClickPagination(topic, valueSearch, 1, limit, statusValue);
-  }, [limit, statusValue]);
-
-  // useEffect(() => {
-  //   onClickPagination(topic, valueSearch, 1, limit, statusValue);
-  // }, [statusValue]);
-
-  useEffect(() => {
-    onClickPagination(topic, valueSearch, 1, limit, statusValue);
-  }, [topic]);
+  }, [limit, statusValue, topic]);
 
   //
-  const handleChangeStatusExam = (id: number) => {
-    examAdminApiService
-      .changeStatus(id)
-      .then((data: any) => {
-        onClickPagination(topic, valueSearch, page, limit, statusValue);
-        toast.success(EditSuccess);
-      })
-      .catch((error: any) => {});
+  const handleChangeStatusExam = async (id: number) => {
+    await examAdminApiService.changeStatus(id);
+    onClickPagination(topic, valueSearch, page, limit, statusValue);
+    toast.success(EditSuccess);
 
     handleCloseDelete(id);
   };
 
   const handleSubmitSearch = () => {
-    onClickPagination(topic, valueSearch, 1, limit, statusValue);
+    onClickPagination(topic, valueSearch, PAGE_DEFAULT, limit, statusValue);
   };
 
   /**
@@ -129,7 +116,7 @@ export const RecentOrdersTable = ({
    * thì gọi lại để lấy dữ liệu mới sau khi edit
    */
   const onChangeValue = () => {
-    onClickPagination(valueSearch, page, limit, statusValue);
+    onClickPagination(topic, valueSearch, page, limit, statusValue);
   };
 
   return (

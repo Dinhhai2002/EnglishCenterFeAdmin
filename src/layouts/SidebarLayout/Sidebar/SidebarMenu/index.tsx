@@ -161,7 +161,6 @@ const SubMenuWrapper = styled(Box)(
 function SidebarMenu() {
   const { closeSidebar } = useContext(SidebarContext);
   console.log(1234);
-  
 
   return (
     <>
@@ -250,6 +249,17 @@ function SidebarMenu() {
                   disableRipple
                   component={RouterLink}
                   onClick={closeSidebar}
+                  to="/management/category-course"
+                  startIcon={<TableChartTwoToneIcon />}
+                >
+                  Danh mục khóa học
+                </Button>
+              </ListItem>
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
                   to="/management/course"
                   startIcon={<TableChartTwoToneIcon />}
                 >
@@ -279,7 +289,7 @@ function SidebarMenu() {
                   Chương học
                 </Button>
               </ListItem>
-              
+
               <ListItem component="div">
                 <Button
                   disableRipple
@@ -289,6 +299,18 @@ function SidebarMenu() {
                   startIcon={<TableChartTwoToneIcon />}
                 >
                   Bài học
+                </Button>
+              </ListItem>
+
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/management/blog"
+                  startIcon={<TableChartTwoToneIcon />}
+                >
+                  Blog
                 </Button>
               </ListItem>
             </List>

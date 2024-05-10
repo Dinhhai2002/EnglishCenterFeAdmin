@@ -13,16 +13,16 @@ import { useEffect, useState } from 'react';
 import userApiService from 'src/services/API/UserApiService';
 
 function ManagementUserProfile() {
-  const [currentUser, setCurrentUser] = useState<any>({});
+  // const [currentUser, setCurrentUser] = useState<any>({});
 
-  useEffect(() => {
-    userApiService
-      .getUser()
-      .then((data: any) => {
-        setCurrentUser(data.data);
-      })
-      .catch((error: any) => {});
-  }, []);
+  // useEffect(() => {
+  //   userApiService
+  //     .getUser()
+  //     .then((data: any) => {
+  //       setCurrentUser(data.data);
+  //     })
+  //     .catch((error: any) => {});
+  // }, []);
 
   return (
     <>
@@ -38,7 +38,7 @@ function ManagementUserProfile() {
           spacing={3}
         >
           <Grid item xs={12} md={12}>
-            <ProfileCover user={currentUser} />
+            <ProfileCover />
           </Grid>
           {/* <Grid item xs={12} md={4}>
             <RecentActivity />

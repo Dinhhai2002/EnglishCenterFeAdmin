@@ -4,8 +4,10 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow, useTheme
+  TableRow,
+  useTheme
 } from '@mui/material';
+import ActionComponent from 'src/components/IconActions/ActionComponent';
 import IconActions from 'src/components/IconActions/IconActions';
 import Label from 'src/components/Label';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
@@ -70,49 +72,32 @@ function TableListExam({
                         <Label color="success">Đã có</Label>
                       )}
                     </TableCell>
-                    {/* <TableCell align="center">
-                      {getStatusLabel(item.is_question, 'Đã có', 'Chưa có')}
-                    </TableCell> */}
                     <TableCell align="center">
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>
-                    <TableCell align="center">
-                      <IconActions
-                        title="Chỉnh sửa"
-                        handleClickOpen={handleClickOpenEdit}
-                        id={item.id}
-                        type={2}
-                      />
-                      {item.status === 1 ? (
-                        <IconActions
-                          title="khóa đề thi"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={0}
-                        />
-                      ) : (
-                        <IconActions
-                          title="Mở đề thi"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={1}
-                        />
-                      )}
-                    </TableCell>
+                    <ActionComponent
+                      handleClickOpenEdit={handleClickOpenEdit}
+                      id={item.id}
+                      handleClickOpenDelete={handleClickOpenDelete}
+                      status={item.status}
+                    />
 
                     {/* Dialog */}
-                    <DialogDelete
-                      openDialogMapDelete={openDialogMapDelete}
-                      id={item.id}
-                      handleCloseDelete={handleCloseDelete}
-                      handleChangeStatusExam={handleChangeStatusExam}
-                    />
-
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
+                    {openDialogMapDelete[item.id] && (
+                      <DialogDelete
+                        openDialogMapDelete={openDialogMapDelete}
+                        id={item.id}
+                        handleCloseDelete={handleCloseDelete}
+                        handleChangeStatusExam={handleChangeStatusExam}
+                      />
+                    )}
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

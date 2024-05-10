@@ -8,6 +8,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
+import ActionComponent from 'src/components/IconActions/ActionComponent';
 import IconActions from 'src/components/IconActions/IconActions';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
 import utils from 'src/utils/Utils';
@@ -29,7 +30,6 @@ function TableListCourse({
 }: any) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-
 
   return (
     <>
@@ -68,29 +68,12 @@ function TableListCourse({
                     <TableCell align="center">
                       {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                     </TableCell>
-                    <TableCell align="center">
-                      <IconActions
-                        title="Chỉnh sửa"
-                        handleClickOpen={handleClickOpenEdit}
-                        id={item.id}
-                        type={2}
-                      />
-                      {item.status === 1 ? (
-                        <IconActions
-                          title="khóa khóa học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={0}
-                        />
-                      ) : (
-                        <IconActions
-                          title="Mở khóa học"
-                          handleClickOpen={handleClickOpenDelete}
-                          id={item.id}
-                          type={1}
-                        />
-                      )}
-                    </TableCell>
+                    <ActionComponent
+                      handleClickOpenEdit={handleClickOpenEdit}
+                      id={item.id}
+                      handleClickOpenDelete={handleClickOpenDelete}
+                      status={item.status}
+                    />
                     {/* Dialog */}
                     <DialogDelete
                       openDialogMapDelete={openDialogMapDelete}
@@ -100,11 +83,13 @@ function TableListCourse({
                       fullScreen={fullScreen}
                     />
 
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

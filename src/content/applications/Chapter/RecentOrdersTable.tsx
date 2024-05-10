@@ -7,7 +7,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider, useMediaQuery,
+  Divider,
+  useMediaQuery,
   useTheme
 } from '@mui/material';
 import { ChangeEvent, createContext, useEffect, useState } from 'react';
@@ -19,6 +20,8 @@ import PaginationComponent from 'src/components/Pagination/PaginationComponent';
 import Search from 'src/components/Search/Search';
 import chapterApiService from 'src/services/API/ChapterApiService';
 import courseApiService from 'src/services/API/CourseApiService';
+import { LIMIT_DEFAULT, PAGE_DEFAULT } from 'src/utils/Constant';
+import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import {
   getStatusLabel,
   labelTableChapter,
@@ -36,9 +39,9 @@ export const RecentOrdersTable = ({
   totalRecord,
   onClickPagination
 }: any) => {
-  const [page, setPage] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(10);
-  const [statusValue, setStatusValue] = useState<number>(-1);
+  const [page, setPage] = useState<number>(PAGE_DEFAULT);
+  const [limit, setLimit] = useState<number>(LIMIT_DEFAULT);
+  const [statusValue, setStatusValue] = useState<number>(StatusEnum.ALL);
   const [valueSearch, setValueSearch] = useState('');
   const [listLessons, setListLessons] = useState([]);
   const [listCourse, setListCourse] = useState([]);
@@ -120,16 +123,8 @@ export const RecentOrdersTable = ({
   }, [page]);
 
   useEffect(() => {
-    onClickPagination(course, valueSearch, 1, limit, statusValue);
-  }, [limit]);
-
-  useEffect(() => {
-    onClickPagination(course, valueSearch, 1, limit, statusValue);
-  }, [statusValue]);
-
-  useEffect(() => {
-    onClickPagination(course, valueSearch, 1, limit, statusValue);
-  }, [course]);
+    onClickPagination(course, valueSearch, PAGE_DEFAULT, limit, statusValue);
+  }, [limit, statusValue, course]);
 
   //
   const handleChangeStatusChapter = (id: number) => {
@@ -151,7 +146,7 @@ export const RecentOrdersTable = ({
   };
 
   const handleSubmitSearch = () => {
-    onClickPagination(course, valueSearch, 1, limit, statusValue);
+    onClickPagination(course, valueSearch, PAGE_DEFAULT, limit, statusValue);
   };
 
   /**
@@ -159,7 +154,7 @@ export const RecentOrdersTable = ({
    * thì gọi lại để lấy dữ liệu mới sau khi edit
    */
   const onChangeValue = () => {
-    onClickPagination(course, valueSearch, 1, limit, statusValue);
+    onClickPagination(course, valueSearch, PAGE_DEFAULT, limit, statusValue);
   };
 
   return (

@@ -36,6 +36,8 @@ const ManagementUsers = Loader(
 
 const Course = Loader(lazy(() => import('src/content/applications/Course')));
 
+const Blog = Loader(lazy(() => import('src/content/applications/Blog')));
+
 const Chapter = Loader(lazy(() => import('src/content/applications/Chapter')));
 
 const Lessons = Loader(lazy(() => import('src/content/applications/Lessons')));
@@ -44,6 +46,10 @@ const Class = Loader(lazy(() => import('src/content/applications/Class')));
 
 const CategoryExam = Loader(
   lazy(() => import('src/content/applications/CategoryExam'))
+);
+
+const CategoryCourse = Loader(
+  lazy(() => import('src/content/applications/CategoryCourse'))
 );
 
 const AddStudent = Loader(
@@ -171,6 +177,15 @@ const routes: RouteObject[] = [
       {
         path: 'category-exam',
         element: <CategoryExam />
+      },
+      {
+        path: 'category-course',
+        element: <CategoryCourse />
+      },
+
+      {
+        path: 'blog',
+        element: <Blog />
       },
       {
         path: 'class',
