@@ -464,3 +464,31 @@ export const labelTableBlog = [
     name: 'Actions'
   }
 ];
+
+
+export const labelTablePromotion = [
+  {
+    id: 1,
+    name: 'Mã khuyến mãi'
+  },
+  {
+    id: 2,
+    name: 'Kiểu khuyến mãi'
+  },
+  {
+    id: 3,
+    name: 'Điểm quy đổi'
+  },
+  {
+    id: 4,
+    name: 'Giá trị khuyến mãi'
+  },
+  {
+    id: 5,
+    name: 'Trạng thái'
+  },
+  {
+    id: 6,
+    name: 'Actions'
+  }
+];

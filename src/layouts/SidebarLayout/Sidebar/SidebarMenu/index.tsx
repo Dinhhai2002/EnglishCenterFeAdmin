@@ -313,6 +313,17 @@ function SidebarMenu() {
                   Blog
                 </Button>
               </ListItem>
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/management/promotion"
+                  startIcon={<TableChartTwoToneIcon />}
+                >
+                  khuyến mãi
+                </Button>
+              </ListItem>
             </List>
           </SubMenuWrapper>
         </List>

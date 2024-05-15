@@ -37,6 +37,9 @@ const ManagementUsers = Loader(
 const Course = Loader(lazy(() => import('src/content/applications/Course')));
 
 const Blog = Loader(lazy(() => import('src/content/applications/Blog')));
+const Promotion = Loader(
+  lazy(() => import('src/content/applications/Promotions'))
+);
 
 const Chapter = Loader(lazy(() => import('src/content/applications/Chapter')));
 
@@ -91,7 +94,7 @@ const Status404 = Loader(
 //login
 const Login = Loader(lazy(() => import('src/content/pages/Login/Login')));
 
-//login
+//ForgotPassword
 const ForgotPassword = Loader(
   lazy(() => import('src/content/pages/ForgotPassword/ForgotPassword'))
 );
@@ -186,6 +189,10 @@ const routes: RouteObject[] = [
       {
         path: 'blog',
         element: <Blog />
+      },
+      {
+        path: 'promotion',
+        element: <Promotion />
       },
       {
         path: 'class',
