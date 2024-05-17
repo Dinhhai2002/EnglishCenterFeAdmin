@@ -465,6 +465,24 @@ export const labelTableBlog = [
   }
 ];
 
+export const labelTableBanner = [
+  {
+    id: 1,
+    name: 'Mã banner'
+  },
+  {
+    id: 2,
+    name: 'Hình ảnh'
+  },
+  {
+    id: 3,
+    name: 'Trạng thái'
+  },
+  {
+    id: 4,
+    name: 'Actions'
+  }
+];
 
 export const labelTablePromotion = [
   {

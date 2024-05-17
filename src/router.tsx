@@ -41,6 +41,8 @@ const Promotion = Loader(
   lazy(() => import('src/content/applications/Promotions'))
 );
 
+const Banner = Loader(lazy(() => import('src/content/applications/Banner')));
+
 const Chapter = Loader(lazy(() => import('src/content/applications/Chapter')));
 
 const Lessons = Loader(lazy(() => import('src/content/applications/Lessons')));
@@ -193,6 +195,10 @@ const routes: RouteObject[] = [
       {
         path: 'promotion',
         element: <Promotion />
+      },
+      {
+        path: 'banner',
+        element: <Banner />
       },
       {
         path: 'class',
