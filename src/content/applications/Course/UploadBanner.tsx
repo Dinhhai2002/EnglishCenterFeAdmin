@@ -23,6 +23,7 @@ import courseApiService from 'src/services/API/CourseApiService';
 import courseAdminApiService from 'src/services/API/Admin/CourseAdminApiService';
 import { toast } from 'react-toastify';
 import { UploadSuccess } from 'src/utils/MessageToast';
+import { LoadingButton } from '@mui/lab';
 
 function UploadBanner({ setChangeData, changeData }: any) {
   const [open, setOpen] = useState(false);
@@ -141,9 +142,14 @@ function UploadBanner({ setChangeData, changeData }: any) {
               <Button variant="outlined" autoFocus onClick={handleClose}>
                 Thoát
               </Button>
-              <Button variant="outlined" type="submit" autoFocus>
+              <LoadingButton
+                loading={loading}
+                variant="outlined"
+                type="submit"
+                autoFocus
+              >
                 Tải lên
-              </Button>
+              </LoadingButton>
             </DialogActions>
           </Box>
         </DialogContent>
