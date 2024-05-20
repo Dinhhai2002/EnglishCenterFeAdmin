@@ -23,8 +23,8 @@ import { config } from './Config';
 import ChapterContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormPost';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [post, setPost] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [post, setPost] = useState<any>(item);
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState('');
 

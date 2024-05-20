@@ -25,8 +25,8 @@ import ChapterContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormPost';
 import Image from 'src/components/Image/Image';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [banner, setBanner] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [banner, setBanner] = useState<any>(item);
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState('');
   const [file, setFile] = useState({});

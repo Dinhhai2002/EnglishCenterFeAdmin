@@ -75,6 +75,7 @@ function TableListCategoryExam({
 
                     {openDialogMapEdit[item.id] && (
                       <DialogEdit
+                        item={item}
                         openDialogMapEdit={openDialogMapEdit}
                         id={item.id}
                         handleCloseEdit={handleCloseEdit}

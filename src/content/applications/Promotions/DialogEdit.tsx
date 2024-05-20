@@ -31,8 +31,8 @@ import { listPromotionType, Max_Value_Percent } from './PageHeader';
 import ChapterContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormCreate';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [promotion, setPromotion] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [promotion, setPromotion] = useState<any>(item);
   const [loading, setLoading] = useState(false);
   const [promotionType, setPromotionType] = useState('');
 

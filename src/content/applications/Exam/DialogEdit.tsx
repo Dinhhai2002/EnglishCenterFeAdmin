@@ -21,8 +21,8 @@ import { EditSuccess } from 'src/utils/MessageToast';
 import ExamContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormCreateExam';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [exam, setExam] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [exam, setExam] = useState<any>(item);
   const [loading, setLoading] = useState(false);
 
   //   sử dụng context để call lấy dữ liệu khi edit thành công
@@ -31,14 +31,14 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     examApiService
       .findOne(id)
       .then((data) => {
         setExam(data.data);
       })
       .catch((error: any) => {});
-  }, []);
+  }, [id]);
 
   const methods = useForm<ValidateInput>({
     resolver: zodResolver(validateSchema)
@@ -75,7 +75,7 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
   return (
     <Dialog
       fullScreen={fullScreen}
-      open={openDialogMapEdit[id] || false}
+      open={openDialogMapEdit || false}
       onClose={() => {
         handleCloseEdit(id);
       }}

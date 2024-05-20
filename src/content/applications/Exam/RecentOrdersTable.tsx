@@ -100,7 +100,8 @@ export const RecentOrdersTable = ({
 
   //
   const handleChangeStatusExam = async (id: number) => {
-    await examAdminApiService.changeStatus(id);
+    const response = await examAdminApiService.changeStatus(id);
+    await console.log(response);
     onClickPagination(topic, valueSearch, page, limit, statusValue);
     toast.success(EditSuccess);
 

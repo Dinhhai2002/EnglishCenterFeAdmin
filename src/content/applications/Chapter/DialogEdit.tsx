@@ -20,8 +20,8 @@ import { EditSuccess } from 'src/utils/MessageToast';
 import ChapterContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormCreateChapter';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [chapter, setChapter] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [chapter, setChapter] = useState<any>(item);
   const [loading, setLoading] = useState(false);
 
   //   sử dụng context để call lấy dữ liệu khi edit thành công

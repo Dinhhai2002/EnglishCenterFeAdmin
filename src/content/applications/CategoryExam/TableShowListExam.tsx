@@ -52,7 +52,7 @@ function TableShowListExam({ listExam, labelTableExam, getStatusLabel }: any) {
                   </TableCell>
 
                   <TableCell align="center">
-                    {(getStatusLabel(item.status), 'Hoạt động', 'Tạm khóa')}
+                    {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                   </TableCell>
                 </TableRow>
               );

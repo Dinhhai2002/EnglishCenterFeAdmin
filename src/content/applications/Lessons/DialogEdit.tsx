@@ -28,8 +28,8 @@ import {
 import LessonsContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormCreateLessons';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [lessons, setLessons] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [lessons, setLessons] = useState<any>(item);
   const [loading, setLoading] = useState(false);
   const [isFree, setIsFree] = useState(``);
 

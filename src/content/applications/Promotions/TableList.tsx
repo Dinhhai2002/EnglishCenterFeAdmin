@@ -76,12 +76,14 @@ function TableList({
                       handleChangeStatus={handleChangeStatus}
                       fullScreen={fullScreen}
                     />
-
-                    <DialogEdit
-                      openDialogMapEdit={openDialogMapEdit}
-                      id={item.id}
-                      handleCloseEdit={handleCloseEdit}
-                    />
+                    {openDialogMapEdit[item.id] && (
+                      <DialogEdit
+                        item={item}
+                        openDialogMapEdit={openDialogMapEdit}
+                        id={item.id}
+                        handleCloseEdit={handleCloseEdit}
+                      />
+                    )}
                   </TableRow>
                 );
               })}

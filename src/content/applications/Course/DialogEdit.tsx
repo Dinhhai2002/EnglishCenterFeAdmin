@@ -26,8 +26,8 @@ import { EditSuccess } from 'src/utils/MessageToast';
 import CourseContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormCourse';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [course, setCourse] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [course, setCourse] = useState<any>(item);
   const [loading, setLoading] = useState(false);
   const [isFree, setIsFree] = useState('');
 

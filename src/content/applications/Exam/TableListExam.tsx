@@ -8,7 +8,6 @@ import {
   useTheme
 } from '@mui/material';
 import ActionComponent from 'src/components/IconActions/ActionComponent';
-import IconActions from 'src/components/IconActions/IconActions';
 import Label from 'src/components/Label';
 import TableCellComponent from 'src/components/TableCellComponent/TableCellComponent';
 import DialogDelete from './DialogDelete';
@@ -26,7 +25,6 @@ function TableListExam({
   handleCloseEdit,
   openDialogMapEdit
 }: any) {
-  const theme = useTheme();
   return (
     <>
       <TableContainer>
@@ -93,7 +91,8 @@ function TableListExam({
                     )}
                     {openDialogMapEdit[item.id] && (
                       <DialogEdit
-                        openDialogMapEdit={openDialogMapEdit}
+                        item={item}
+                        openDialogMapEdit={openDialogMapEdit[item.id]}
                         id={item.id}
                         handleCloseEdit={handleCloseEdit}
                       />

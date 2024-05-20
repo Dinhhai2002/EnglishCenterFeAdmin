@@ -21,8 +21,8 @@ import CategoryExamContext from './RecentOrdersTable';
 import { ValidateInput, validateSchema } from './ValidateFormEdit';
 import { EditSuccess } from 'src/utils/MessageToast';
 
-function DialogEdit({ openDialogMapEdit, id, handleCloseEdit }) {
-  const [categoryExam, setCategoryExam] = useState<any>({});
+function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
+  const [categoryExam, setCategoryExam] = useState<any>(item);
   const [loading, setLoading] = useState(false);
 
   //   sử dụng context để call lấy dữ liệu khi edit thành công

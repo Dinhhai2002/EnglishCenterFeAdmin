@@ -9,7 +9,11 @@ import {
   Typography
 } from '@mui/material';
 
-function TableShowListExam({ listCourse, labelTableExam, getStatusLabel }: any) {
+function TableShowListExam({
+  listCourse,
+  labelTableExam,
+  getStatusLabel
+}: any) {
   return (
     <>
       <TableContainer>
@@ -52,7 +56,7 @@ function TableShowListExam({ listCourse, labelTableExam, getStatusLabel }: any) 
                   </TableCell>
 
                   <TableCell align="center">
-                    {(getStatusLabel(item.status), 'Hoạt động', 'Tạm khóa')}
+                    {getStatusLabel(item.status, 'Hoạt động', 'Tạm khóa')}
                   </TableCell>
                 </TableRow>
               );
