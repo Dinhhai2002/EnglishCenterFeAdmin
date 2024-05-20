@@ -20,6 +20,7 @@
     "@mui/lab": "5.0.0-alpha.84",
     "@mui/material": "5.8.2",
     "@mui/styles": "5.8.0",
+    "@mui/system": "^5.15.15",
     "@mui/x-date-pickers": "^6.11.2",
     "@types/luxon": "^3.3.2",
     "@types/react": "^17.0.40",
