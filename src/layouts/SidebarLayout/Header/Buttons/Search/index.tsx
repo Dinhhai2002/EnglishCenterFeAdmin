@@ -1,30 +1,22 @@
-import { forwardRef, Ref, useState, ReactElement, ChangeEvent } from 'react';
+import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
+import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import {
-  Avatar,
-  Link,
-  Box,
-  Button,
-  Divider,
+  Avatar, Box,
+  Button, Dialog,
+  DialogContent,
+  DialogTitle, Divider,
   IconButton,
   InputAdornment,
-  lighten,
-  List,
+  lighten, Link, List,
   ListItem,
-  ListItemAvatar,
-  TextField,
+  ListItemAvatar, Slide, TextField,
   Theme,
   Tooltip,
-  Typography,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Slide,
-  Hidden
+  Typography
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { TransitionProps } from '@mui/material/transitions';
-import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import FindInPageTwoToneIcon from '@mui/icons-material/FindInPageTwoTone';
+import { ChangeEvent, forwardRef, ReactElement, Ref, useState } from 'react';
 
 import ChevronRightTwoToneIcon from '@mui/icons-material/ChevronRightTwoTone';
 
@@ -150,18 +142,17 @@ function HeaderSearch() {
             <Divider sx={{ my: 1 }} />
             <List disablePadding>
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link
@@ -189,18 +180,17 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component="li" />
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link
@@ -227,18 +217,17 @@ function HeaderSearch() {
               </ListItem>
               <Divider sx={{ my: 1 }} component="li" />
               <ListItem button>
-                <Hidden smDown>
-                  <ListItemAvatar>
-                    <Avatar
-                      sx={{
-                        background: (theme: Theme) =>
-                          theme.palette.secondary.main
-                      }}
-                    >
-                      <FindInPageTwoToneIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                </Hidden>
+                {/* <Hidden smDown> */}
+                <ListItemAvatar>
+                  <Avatar
+                    sx={{
+                      background: (theme: Theme) => theme.palette.secondary.main
+                    }}
+                  >
+                    <FindInPageTwoToneIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                {/* </Hidden> */}
                 <Box flex="1">
                   <Box display="flex" justifyContent="space-between">
                     <Link

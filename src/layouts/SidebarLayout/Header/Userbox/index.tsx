@@ -6,9 +6,7 @@ import {
   Avatar,
   Box,
   Button,
-  Divider,
-  Hidden,
-  lighten,
+  Divider, lighten,
   List,
   ListItem,
   ListItemText,
@@ -16,12 +14,10 @@ import {
   Typography
 } from '@mui/material';
 
-import InboxTwoToneIcon from '@mui/icons-material/InboxTwoTone';
-import { styled } from '@mui/material/styles';
-import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
+import ExpandMoreTwoToneIcon from '@mui/icons-material/ExpandMoreTwoTone';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import { styled } from '@mui/material/styles';
 import utils from 'src/utils/Utils';
 
 const UserBoxButton = styled(Button)(
@@ -86,17 +82,17 @@ function HeaderUserbox() {
           alt={currentUser.user_name}
           src={currentUser.avatar_url}
         />
-        <Hidden mdDown>
+        {/* <Hidden mdDown> */}
           <UserBoxText>
             <UserBoxLabel variant="body1">{currentUser.user_name}</UserBoxLabel>
             <UserBoxDescription variant="body2">
               {utils.getRole(Number(currentUser.role))}
             </UserBoxDescription>
           </UserBoxText>
-        </Hidden>
-        <Hidden smDown>
+        {/* </Hidden> */}
+        {/* <Hidden smDown> */}
           <ExpandMoreTwoToneIcon sx={{ ml: 1 }} />
-        </Hidden>
+        {/* </Hidden> */}
       </UserBoxButton>
       <Popover
         anchorEl={ref.current}
