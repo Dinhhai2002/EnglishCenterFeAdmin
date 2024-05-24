@@ -3,7 +3,6 @@ import { useTheme } from '@mui/material/styles';
 import utils from 'src/utils/Utils';
 
 function PageHeader() {
-
   const { currentUser, isCurrentUser } = utils.getCurrentUser();
   const user = {
     name: 'Catherine Pike',
@@ -21,13 +20,13 @@ function PageHeader() {
             height: theme.spacing(8)
           }}
           variant="rounded"
-          alt={currentUser.user_name}
-          src={currentUser.avatar_url}
+          alt={currentUser.user_name ? currentUser.user_name : ''}
+          src={currentUser.avatar_url ? currentUser.avatar_url : ''}
         />
       </Grid>
       <Grid item>
         <Typography variant="h3" component="h3" gutterBottom>
-          Welcome, {currentUser.user_name}!
+          Welcome, {currentUser.user_name ? currentUser.user_name : ''}!
         </Typography>
         <Typography variant="subtitle2">
           {/* Today is a good day to start trading crypto assets! */}
