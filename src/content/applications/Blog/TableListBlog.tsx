@@ -71,7 +71,7 @@ function TableListBlog({
                       />
                       {item.status === 3 ? (
                         <IconActions
-                          title="Mở chương học"
+                          title="Mở"
                           handleClickOpen={handleClickOpenDelete}
                           id={item.id}
                           type={1}
@@ -79,7 +79,7 @@ function TableListBlog({
                       ) : (
                         <IconActions
                           isCheck={item.status === 1 ? true : false}
-                          title="khóa chương học"
+                          title="khóa"
                           handleClickOpen={handleClickOpenDelete}
                           id={item.id}
                           type={0}

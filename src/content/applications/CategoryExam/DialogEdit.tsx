@@ -102,7 +102,7 @@ function DialogEdit({ openDialogMapEdit, id, handleCloseEdit, item }) {
               defaultValue={categoryExam.name}
               required
               fullWidth
-              label="Tên danh mục khóa học"
+              label="Tên danh mục đề thi"
               sx={{ mb: 2 }}
             />
             <FormInput

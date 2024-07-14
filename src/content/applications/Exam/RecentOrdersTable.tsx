@@ -131,7 +131,7 @@ export const RecentOrdersTable = ({
             >
               <DropDownComponent
                 arr={listTopic}
-                label="Tên khóa học"
+                label="Tên topic"
                 value={topic}
                 handleStatusChange={handleChangeTopic}
                 type={1}
