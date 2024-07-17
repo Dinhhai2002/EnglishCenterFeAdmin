@@ -14,18 +14,23 @@ import TableCellComponent from 'src/components/TableCellComponent/TableCellCompo
 import { StatusEnum } from 'src/utils/enum/StatusEnum';
 import DialogDelete from './DialogDelete';
 import DialogEdit from './DialogEdit';
+import DialogDeleteNew from './DialogDeleteNew';
 
 function TableList({
   listBanner,
   labelTable,
   getStatusLabel,
   handleChangeStatus,
+  handleDeleted,
   handleClickOpenDelete,
   handleCloseDelete,
   openDialogMapDelete,
   handleClickOpenEdit,
   handleCloseEdit,
-  openDialogMapEdit
+  openDialogMapEdit,
+  openDialogMapDeleteNew,
+  handleClickOpenDeleteNew,
+  handleCloseDeleteNew
 }: any) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -74,7 +79,7 @@ function TableList({
                       />
                       {item.status === StatusEnum.OFF ? (
                         <IconActions
-                          title="Mở banner"
+                          title="Mở trạng thái banner"
                           handleClickOpen={handleClickOpenDelete}
                           id={item.id}
                           type={1}
@@ -87,12 +92,35 @@ function TableList({
                           type={0}
                         />
                       )}
+                      {item.is_deleted === StatusEnum.ON ? (
+                        <IconActions
+                          title="Mở banner"
+                          handleClickOpen={handleClickOpenDeleteNew}
+                          id={item.id}
+                          type={1}
+                        />
+                      ) : (
+                        <IconActions
+                          title="Xóa banner"
+                          handleClickOpen={handleClickOpenDeleteNew}
+                          id={item.id}
+                          type={0}
+                        />
+                      )}
                     </TableCell>
                     <DialogDelete
                       openDialogMapDelete={openDialogMapDelete}
                       id={item.id}
                       handleCloseDelete={handleCloseDelete}
                       handleChangeStatus={handleChangeStatus}
+                      fullScreen={fullScreen}
+                    />
+
+                    <DialogDeleteNew
+                      openDialogMapDeleteNew={openDialogMapDeleteNew}
+                      id={item.id}
+                      handleCloseDeleteNew={handleCloseDeleteNew}
+                      handleDeleted={handleDeleted}
                       fullScreen={fullScreen}
                     />
                     {openDialogMapEdit[item.id] && (

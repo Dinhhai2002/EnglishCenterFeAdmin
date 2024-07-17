@@ -134,6 +134,22 @@ export const statusOptions = [
   }
 ];
 
+
+export const deleteOptions = [
+  {
+    id: -1,
+    name: 'Tất cả'
+  },
+  {
+    id: 1,
+    name: 'Đã xóa'
+  },
+  {
+    id: 0,
+    name: 'Đang sử dụng'
+  }
+];
+
 export const statusOptionsBlog = [
   {
     id: -1,

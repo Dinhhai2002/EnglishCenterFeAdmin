@@ -13,7 +13,7 @@ function RecentOrders({ changeData }) {
 
   const fetchData = () => {
     bannerApiService
-      .getAll(StatusEnum.ALL, PAGE_DEFAULT, LIMIT_DEFAULT)
+      .getAll(StatusEnum.ALL, StatusEnum.ALL, PAGE_DEFAULT, LIMIT_DEFAULT)
       .then((data) => {
         setListBanner(data.data.list);
         setTotalRecord(data.data.total_record);
@@ -33,12 +33,13 @@ function RecentOrders({ changeData }) {
   }, [changeData]);
 
   const onClickPagination = (
+    deleteValue: number,
     statusValue: number,
     page: number,
     limit: number
   ) => {
     bannerApiService
-      .getAll(statusValue, page, limit)
+      .getAll(deleteValue, statusValue, page, limit)
       .then((data: any) => {
         setListBanner(data.data.list);
         setTotalRecord(data.data.total_record);

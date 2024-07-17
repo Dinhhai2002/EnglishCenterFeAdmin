@@ -9,6 +9,7 @@ class BannerApiService extends BaseApiService {
   }
 
   public async getAll(
+    isDeleted: number,
     status: number,
     page: number,
     limit: number
@@ -16,6 +17,7 @@ class BannerApiService extends BaseApiService {
     try {
       const response = await this.api.get(`${prefix}`, {
         params: {
+          is_deleted: isDeleted,
           status: status,
           page: page,
           limit: limit
@@ -66,6 +68,23 @@ class BannerApiService extends BaseApiService {
   public async changeStatus(id: number): Promise<any> {
     try {
       const response = await this.api.post(`${prefix}/${id}/change-status`);
+
+      handleResponseApi.handleResponse(response);
+      if (response.data.status === HttpStatusCode.BadRequest) {
+        throw {
+          response
+        };
+      }
+
+      return response.data;
+    } catch (error: any) {
+      throw { error };
+    }
+  }
+
+  public async deleted(id: number): Promise<any> {
+    try {
+      const response = await this.api.post(`${prefix}/${id}/delete`);
 
       handleResponseApi.handleResponse(response);
       if (response.data.status === HttpStatusCode.BadRequest) {

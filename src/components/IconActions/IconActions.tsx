@@ -3,7 +3,15 @@ import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-function IconActions({ handleClickOpen, id, type, title, isCheck = false }) {
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+function IconActions({
+  handleClickOpen,
+  id,
+  type,
+  title,
+  isCheck = false,
+  disabled = false
+}) {
   const theme = useTheme();
   const map = {
     0: {
@@ -26,6 +34,11 @@ function IconActions({ handleClickOpen, id, type, title, isCheck = false }) {
       icon: <EditTwoToneIcon fontSize="small" />,
       background: theme.colors.primary.lighter,
       color: theme.palette.primary.main
+    },
+    3: {
+      icon: <DeleteForeverIcon fontSize="small" />,
+      background: theme.colors.error.lighter,
+      color: theme.palette.error.main
     }
   };
   return (
@@ -42,6 +55,7 @@ function IconActions({ handleClickOpen, id, type, title, isCheck = false }) {
         onClick={() => {
           handleClickOpen(id);
         }}
+        disabled={disabled}
       >
         {map[type].icon}
       </IconButton>
