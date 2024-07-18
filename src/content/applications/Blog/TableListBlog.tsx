@@ -79,7 +79,7 @@ function TableListBlog({
                       ) : (
                         <IconActions
                           isCheck={item.status === 1 ? true : false}
-                          title="khóa"
+                          title={item.status === 1 ? 'duyệt' : 'khóa'}
                           handleClickOpen={handleClickOpenDelete}
                           id={item.id}
                           type={0}
